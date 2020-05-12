@@ -1,2 +1,1 @@
-# eLicitatie
-Proiect pentru facultate
+eLicitatie

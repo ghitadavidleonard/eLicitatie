@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>a4edb975-baa4-4d85-a04e-4992daf5993d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200502144330_ProductCategoryNavigationProperty.cs" />
+    <Compile Remove="Migrations\20200502144330_ProductCategoryNavigationProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200502155828_AddedDeleteConstraintsForProductsCategory.cs" />
+    <Compile Remove="Migrations\20200502155828_AddedDeleteConstraintsForProductsCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200502155933_AddedDeleteConstraintsForProductsCategory.cs" />
+    <Compile Remove="Migrations\20200502155933_AddedDeleteConstraintsForProductsCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200502160621_AddedDeleteConstraintsForProductsCategory.cs" />
+    <Compile Remove="Migrations\20200502160621_AddedDeleteConstraintsForProductsCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200503194717_d.cs" />
+    <Compile Remove="Migrations\20200503194717_d.Designer.cs" />
+    <Compile Remove="Migrations\20200503194944_d.cs" />
+    <Compile Remove="Migrations\20200503194944_d.Designer.cs" />
+    <Compile Remove="Migrations\20200503195010_d.cs" />
+    <Compile Remove="Migrations\20200503195010_d.Designer.cs" />
+    <Compile Remove="Migrations\20200503195049_d.cs" />
+    <Compile Remove="Migrations\20200503195049_d.Designer.cs" />
+    <Compile Remove="Migrations\20200506210731_DeleteOFfersOnAuctionDeletion.cs" />
+    <Compile Remove="Migrations\20200506210731_DeleteOFfersOnAuctionDeletion.Designer.cs" />
+    <Compile Remove="Migrations\20200506210840_DeleteOFfersOnAuctionDeletion.cs" />
+    <Compile Remove="Migrations\20200506210840_DeleteOFfersOnAuctionDeletion.Designer.cs" />
+    <Compile Remove="Migrations\20200506212217_DeleteOFfersOnAuctionDeletion.cs" />
+    <Compile Remove="Migrations\20200506212217_DeleteOFfersOnAuctionDeletion.Designer.cs" />
+    <Compile Remove="Migrations\20200506212839_DeleteOFfersOnAuctionDeletion.cs" />
+    <Compile Remove="Migrations\20200506212839_DeleteOFfersOnAuctionDeletion.Designer.cs" />
+    <Compile Remove="Migrations\20200506213253_DeleteOFfersOnAuctionDeletion.cs" />
+    <Compile Remove="Migrations\20200506213253_DeleteOFfersOnAuctionDeletion.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HangFire" Version="1.7.11" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.4.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
+
+</Project>

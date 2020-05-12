@@ -1,0 +1,69 @@
+﻿@model AuctionCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Auction";
+}
+
+@if (Model != null)
+{
+    List<SelectListItem> existentProducts = new List<SelectListItem>() {
+        new SelectListItem { Value = "0", Text = "Please select...", Selected = true, Disabled = true },
+    };
+    existentProducts.AddRange(Model.ExistentProducts.Select(ep => new SelectListItem { Value = ep.Id.ToString(), Text = ep.ShortDescription }));
+
+    if (TempData["AuctionErrorMessage"] != null)
+    {
+        <partial name="../Shared/_ErrorPushNotification" model="@TempData["AuctionErrorMessage"]" />
+    }
+
+    <form asp-controller="Auctions" asp-action="Create" method="post" enctype="multipart/form-data">
+        <h3>Select product to auction</h3>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Existent products</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New product</a>
+            </div>
+        </nav>
+        <div class="tab-content p-2" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <select class="form-control" asp-for="ExistentProductId" asp-items="existentProducts"></select>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="form-group">
+                    <label>Short Description</label>
+                    <input type="text" class="form-control" name="@($"{nameof(Model.NewProduct)}.{nameof(Model.NewProduct.ShortDescription)}")" />
+                </div>
+                <div class="form-group">
+                    <label>Long Description</label>
+                    <input type="text" class="form-control" name="@($"{nameof(Model.NewProduct)}.{nameof(Model.NewProduct.LongDescription)}")" />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="@($"{nameof(Model.NewProduct)}.{nameof(Model.NewProduct.Categories)}")"
+                            asp-items="@(new SelectList(Model.Categories, nameof(CategoryModel.Id), nameof(CategoryModel.Name)))" multiple>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Insert Image</label>
+                    <input type="file" name="@($"{nameof(Model.NewProduct)}.{nameof(Model.NewProduct.Image)}")" class="form-control-file" />
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <h3>Auction details</h3>
+        <div class="form-group">
+            <label>Starting Price</label>
+            <input type="number" class="form-control" asp-for="StartingPrice" />
+        </div>
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" class="form-control" asp-for="StartDate" />
+        </div>
+        <div class="form-group">
+            <label>Days active</label>
+            <input type="number" class="form-control" asp-for="DaysActive" />
+        </div>
+
+        <button type="submit" class="btn btn-dark">Post</button>
+    </form>
+}

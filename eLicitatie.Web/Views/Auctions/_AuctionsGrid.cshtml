@@ -1,0 +1,11 @@
+﻿@model IEnumerable<AuctionViewModel>
+
+@if (Model != null)
+{
+    <div class="d-inline-flex justify-content-between flex-wrap">
+        @foreach (var item in Model)
+        {
+            <partial name="./_AuctionCard.cshtml" model="item" />
+        }
+    </div>
+}

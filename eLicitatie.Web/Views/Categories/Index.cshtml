@@ -1,0 +1,65 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div>
+    <partial name="_AddCategoryFormPartial" model="new CategoryModel()" />
+    @if (TempData["CategErrorMessage"] != null)
+    {
+        <partial name="../Shared/_ErrorPushNotification" model="@TempData["CategErrorMessage"]" />
+    }
+    <h4 class="mt-5 mb-3">List of available categories</h4>
+    <div>
+        @foreach (var item in Model.Categories.OrderBy(o => o.Name))
+        {
+            <div class="card w-100 shadow-sm">
+                <div class="card-body">
+                    <span class="m-pointer" onclick="updateModal('@item.Name', @item.Id)" data-toggle="modal" data-target="#updateCatModal">
+                        @item.Name
+                    </span>
+                    <a class="text-decoration-none float-right" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id">
+                        &times;
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateCatModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateCategForm" method="post" asp-controller="Categories" asp-action="Update">
+                        <input type="text" id="vn" name="Name" placeholder="" />
+                        <input type="hidden" name="Id" id="vi" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" onclick="submitForm()" id="#submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function updateModal(name, id) {
+        document.getElementById("vn").placeholder = name;
+        document.getElementById("vi").value = id;
+    }
+
+    function submitForm() {
+        document.getElementById("updateCategForm").submit();
+    }
+</script>

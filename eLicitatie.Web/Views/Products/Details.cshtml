@@ -1,0 +1,32 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Auction";
+}
+
+<div class="container mt-5">
+    <h2>Product: @Model.ShortDescription</h2>
+    <div class="card w-100 shadow-sm">
+        <div class="card-body">
+            <div>
+                <div class="card-body row no-gutters">
+                    <div class="col-4">
+                        <img class="card-img-top" alt="@Model.ShortDescription" src="@Url.Action("Image", "Products", new { productId = Model.Id})" />
+                    </div>
+                    <div class="col-8 pl-5">
+                        @foreach (var categ in Model.Categories)
+                        {
+                            <span class="badge badge-info">@categ.Name</span>
+                        }
+                        <h5 class="mt-3">Description</h5>
+                        <p>@Model.LongDescription</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@Model.Id" class="card-link">Delete</a>
+                    <a asp-controller="Products" asp-action="UpdateProduct" asp-route-productId="@Model.Id" class="card-link">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

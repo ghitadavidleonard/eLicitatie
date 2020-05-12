@@ -1,0 +1,23 @@
+﻿@model HomeIndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    @if (TempData["AuctionErrorMessage"] != null)
+    {
+        <partial name="_ErrorPushNotification" model="@(TempData["AuctionErrorMessage"])" />
+    }
+
+    <form method="get" asp-controller="Home" asp-action="Auctions" class="mb-5">
+        <div class="form-group">
+            <label>Search by categories</label>
+            <select class="form-control custom-select" name="productCategories" multiple asp-items="@(new SelectList(Model.Categories, nameof(CategoryModel.Id), nameof(CategoryModel.Name)))"></select>
+        </div>
+        <button type="submit" class="btn btn-dark mb-2">Search</button>
+    </form>
+
+    <partial name="../Auctions/_AuctionsGrid.cshtml" model="Model.Auctions" />
+
+</div>

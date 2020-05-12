@@ -1,0 +1,33 @@
+﻿@model AddProductViewModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+    <div class="container">
+        <div class="mb-4"><h3>Add Product</h3></div>
+        <div class="card w-100 shadow-sm">
+            <div class="card-body">
+                <form enctype="multipart/form-data" method="post" asp-controller="Products" asp-action="AddProduct">
+                    <div class="form-group">
+                        <label>Short Description</label>
+                        <input type="text" class="form-control" name="ShortDescription" />
+                    </div>
+                    <div class="form-group">
+                        <label>Long Description</label>
+                        <input type="text" class="form-control" name="LongDescription" />
+                    </div>
+                    <div class="form-group">
+                        <label>Select category(es)</label>
+                        <select class="form-control" name="Categories" asp-items="@(new SelectList(Model.Categories, nameof(CategoryModel.Id), nameof(CategoryModel.Name)))" multiple>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Insert Image</label>
+                        <input type="file" name="Image" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>

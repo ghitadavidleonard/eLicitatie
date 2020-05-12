@@ -1,0 +1,63 @@
+﻿* {
+    font-family: 'Inter', sans-serif;
+}
+
+.bckimage {
+    background-image: url(../img/lrbkg.jpg);
+    background-color: rgb(141, 94, 154);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.lr-container {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 400px;
+    padding: 20px 35px;
+    border-radius: 5px;
+}
+
+.lr-header {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 60px;
+    color: hsla(0, 0%, 94%, 1);
+}
+
+.lr-body {
+    font-size: 15px;
+    color: hsla(0, 0%, 92%, 1);
+    font-weight: bolder;
+    margin-bottom: 24px;
+}
+
+.lr-footer {
+    font-size: 14px;
+    text-align: center;
+}
+
+    .lr-footer a {
+        color: hsla(0, 0%, 88%, 1);
+    }
+
+        .lr-footer a:hover {
+            color: hsla(0, 0%, 76%, 1);
+        }
+
+.submit-btn {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 18px;
+    padding: .275rem .75rem;
+}
+
+.text-danger {
+    font-size: 13px;
+}

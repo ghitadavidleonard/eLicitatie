@@ -1,0 +1,30 @@
+﻿@model AuctionViewModel
+
+@{
+    var creatorId = Convert.ToInt32(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+}
+
+@if (Model != null)
+{
+    <div class="card shadow-sm mb-5 overflow-hidden" style="width: 18rem;">
+        <div class="card-body">
+            <div>
+                <a asp-controller="Auctions" asp-action="Details" asp-route-id="@Model.Id"><h5 class="card-title mt-2">Auction - @Model.Product?.ShortDescription</h5></a>
+                @if ((DateTime.UtcNow.Date - Model.StartDate.Date) <= TimeSpan.FromDays(1))
+                { 
+                    <div class="cbadge shadow-sm"><span class="text-black-50">new</span></div>
+                }
+            </div>
+            <p class="card-text">Price: @Model.StartingPrice $</p>
+            <p class="card-text">Start date: @Model.StartDate.ToShortDateString()</p>
+            <p class="card-text">Remaining days: @Model.RemainingDays @(Model.LastDay ? "(last day)" : string.Empty)</p>
+            <p class="card-text">Creator: @Model.Creator?.FullName</p>
+        </div>
+        @if (Model.Creator.Id == creatorId)
+        {
+        <div class="card-body">
+            <a asp-controller="Auctions" asp-action="Delete" asp-route-id="@Model.Id" class="card-link">Delete</a>
+        </div>
+        }
+    </div>
+}

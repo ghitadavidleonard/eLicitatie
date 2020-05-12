@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AuctionViewModel>
+
+@{
+    ViewData["Title"] = "Auctions";
+}
+
+<div class="container mt-5">
+    @if (TempData["AuctionErrorMessage"] != null)
+    {
+        <partial name="_ErrorPushNotification" model="@(TempData["AuctionErrorMessage"])" />
+    }
+    else
+        @if (TempData["CategoriesErrorMessage"] != null)
+            {
+                <partial name="_ErrorPushNotification" model="@(TempData["CategoriesErrorMessage"])" />
+            }
+    <div class="row">
+        <div class="col">
+            <h3>All available auctions</h3>
+        </div>
+        <div class="col text-right">
+            <a asp-controller="Auctions" asp-action="Create" class="btn btn-dark mb-4">Create Auction</a>
+        </div>
+    </div>
+
+    <partial name="_AuctionsGrid" model="Model" />
+</div>

@@ -1,0 +1,53 @@
+﻿@model ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+@if (TempData["ProductErrorMessage"] != null)
+{
+    <partial name="_ErrorPushNotification" model="@(TempData["ProductErrorMessage"])" />
+}
+<div class="container mt-5">
+    <div>
+        <form method="get" asp-controller="Products" asp-action="GetProductsByCategory" class="mb-5">
+            <div class="form-group">
+                <label>Search by categories</label>
+                <select class="form-control custom-select" name="productCategories" multiple asp-items="@(new SelectList(Model.Categories, nameof(CategoryModel.Id), nameof(CategoryModel.Name)))"></select>
+            </div>
+            <button type="submit" class="btn btn-dark mb-2">Search</button>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>All of my products</h3>
+        </div>
+        <div class="col text-right">
+            <a asp-controller="Products" asp-action="AddProduct" class="btn btn-dark mb-4">Create product</a>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        @foreach (var item in Model.Products)
+        {
+            <div class="col-4">
+                <div class="card shadow-sm mt-4">
+                    <img class="card-img-top img-fluid" src="@Url.Action("Image", "Products", new { productId = item.ImageUrl})" alt="Card image cap">
+                    <div class="card-body">
+                        @foreach (var categ in item.Categories)
+                        {
+                            <span class="badge badge-info">@categ.Name</span>
+                        }
+                        <h5 class="card-title mt-2"><a asp-controller="Products" asp-action="Details" asp-route-productId="@item.Id">@item.ShortDescription</a></h5>
+                        <p class="card-text overflow-ellipsis-card">@item.LongDescription</p>
+                    </div>
+                    <div class="card-body justify-content-between w-100">
+                        <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id" class="card-link float-left">Delete</a>
+                        <a asp-controller="Products" asp-action="UpdateProduct" asp-route-productId="@item.Id" class="card-link float-right">Edit</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
