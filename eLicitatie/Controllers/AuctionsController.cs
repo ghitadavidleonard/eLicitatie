@@ -136,7 +136,7 @@ namespace eLicitatie.Api.Controllers
 
             if (entity == null) return UnprocessableEntity(Constants.ErrorMessages.UnprocessableEntity);
 
-            if (DateTime.UtcNow.Date >= entity.StartDate.AddDays(entity.DaysActive))
+            if (DateTime.UtcNow >= entity.StartDate.AddDays(entity.DaysActive))
             {
                 // if final date passed and contract has at least one offer change the owner to the one with the biggest offer
                 if (_context.Offers.Any(o => o.AuctionId == auctionId))
